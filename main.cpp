@@ -1,5 +1,6 @@
 #include <iostream>
 #include "music_recommender.h" //to connect with the recommendation files
+#include "output_display.h"
 using namespace std;
 
 void displayMenu() {
