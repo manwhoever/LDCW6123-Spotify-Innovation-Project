@@ -49,6 +49,8 @@ void musicRecommendation()
 
 
 void aboutSpotify() {
+    int choice;
+    
     cout << "\n========================================" << endl; 
     cout << "            ABOUT SPOTIFY" << endl; 
     cout << "========================================" << endl;
