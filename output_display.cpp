@@ -5,7 +5,10 @@
 
 using namespace std;
 
+//------------ Displays either the music recommendation or an error message ------------
 void displayRecommendationResult(const Recommendation& rec, const string& genreName) {
+
+    // Display an error message if no valid recommendation was found
     if (!rec.found) {
         cout << "\n==================================================" << endl;
         cout << "               RECOMMENDATION ERROR               " << endl;
@@ -15,6 +18,7 @@ void displayRecommendationResult(const Recommendation& rec, const string& genreN
         return;
     }
 
+    // Display the recommended song details to the user
     cout << "\n==================================================" << endl;
     cout << "             YOUR MUSIC RECOMMENDATION            " << endl;
     cout << "==================================================" << endl;
