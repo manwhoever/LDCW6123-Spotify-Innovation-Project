@@ -5,6 +5,7 @@ using namespace std;
 
 // Gets an integer from the user and validates that it's within the allowed range
 int getIntegerInput(int min, int max) {
+
     int choice;
 
     while (true) {
@@ -63,19 +64,7 @@ void musicRecommendation() {
 
         Recommendation rec = getRecommendation(genreChoice); 
         
-        cout << "\n------------------------------------------" << endl; 
-        cout << "             Your Recommendation     " << endl; 
-        cout << "------------------------------------------" << endl; 
-
-
-        if (rec.found) { 
-            cout << "Song: " << rec.song << endl; 
-            cout << "Artist: " << rec.artist << endl; 
-            cout << "Description: " << rec.description << endl; 
-        } 
-        else { cout << rec.description << endl; } 
-
-        cout << "------------------------------------------" << endl; 
+        displayRecommendationResult(rec, "");
 
         while (true) {
             cout << "\nPress 0 to return to main menu or 1 to get another recommendation: ";
