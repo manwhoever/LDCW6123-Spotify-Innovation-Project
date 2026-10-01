@@ -12,11 +12,56 @@ void displayMenu() {
     cout << "3. Exit" << endl;
 }
 
-void musicRecommendation() {
-    cout << "Music Recommendation: Check out the latest hits on Spotify!" << endl;
+void musicRecommendation() 
+{ int genreChoice; 
+    do { 
+        cout << "\n========================================" << endl; 
+        cout << "    MUSIC RECOMMENDATIONS" << endl; 
+        cout << "========================================" << endl; 
+        cout << "Choose a genre:" << endl; cout << "1. Pop" << endl; 
+        cout << "2. Rock" << endl; cout << "3. Hip-Hop" << endl; 
+        cout << "4. Jazz" << endl; cout << "5. Classical" << endl; 
+        cout << "6. Indie / Chill" << endl; 
+        cout << "0. Back to Main Menu" << endl; 
+        cout << "Enter your choice: "; 
+        cin >> genreChoice; 
+        if (genreChoice == 0) { 
+            cout << "\nReturning to main menu..." << endl; 
+            break; 
+        } 
+        Recommendation rec = getRecommendation(genreChoice); 
+        cout << "\n----------------------------------------" << endl; 
+        if (rec.found) { 
+            cout << "Song: " << rec.song << endl; 
+            cout << "Artist: " << rec.artist << endl; 
+            cout << "Description: " << rec.description << endl; 
+        } 
+        else { cout << rec.description << endl; } 
+
+        cout << "----------------------------------------" << endl; 
+
+        if (genreChoice != 0) { 
+            cout << "\nEnter 0 to go back to the main menu,"; 
+            cout << " or choose another genre: "; 
+        } 
+        } while (genreChoice != 0); 
 }
+
+
 void aboutSpotify() {
-    cout << "About Spotify: Spotify is a digital music service that gives you access to millions of songs." << endl;
+    cout << "\n========================================" << endl; 
+    cout << "            ABOUT SPOTIFY" << endl; 
+    cout << "========================================" << endl;
+    cout << "Spotify is a digital music service that " << endl;
+    cout << "gives you access to millions of songs." << endl;
+
+    cout << "\n Press 0 to return to main menu: ";
+    cin >> choice;
+
+    while (choice != 0) {
+        cout << "Invalid input. Please press 0 to return to main menu: ";
+        cin >> choice;
+    }
 }
 
 int main() {
