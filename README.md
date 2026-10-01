@@ -73,8 +73,7 @@ The program is split into three parts, each with one job:
 Keep all the source files in the same folder, then compile all three `.cpp` files together:
 
 ```
-g++ -std=c++11 -Wall -o music_app main.cpp music_recommender.cpp output_display.cpp
-./music_app
+  g++ main.cpp music_recommender.cpp output_display.cpp -o music_app
 ```
 
 On Windows, run `music_app.exe` instead of `./music_app`.
