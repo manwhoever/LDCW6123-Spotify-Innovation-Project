@@ -12,9 +12,11 @@ void displayMenu() {
     cout << "3. Exit" << endl;
 }
 
-void musicRecommendation() 
-{ int genreChoice; 
-    do { 
+void musicRecommendation() {
+    int genreChoice; 
+    int nextChoice;
+
+    while (true) { 
         cout << "\n========================================" << endl; 
         cout << "    MUSIC RECOMMENDATIONS" << endl; 
         cout << "========================================" << endl; 
@@ -24,13 +26,21 @@ void musicRecommendation()
         cout << "6. Indie / Chill" << endl; 
         cout << "0. Back to Main Menu" << endl; 
         cout << "Enter your choice: "; 
+
         cin >> genreChoice; 
+
         if (genreChoice == 0) { 
             cout << "\nReturning to main menu..." << endl; 
             break; 
         } 
+
         Recommendation rec = getRecommendation(genreChoice); 
-        cout << "\n----------------------------------------" << endl; 
+        
+        cout << "\n------------------------------------------" << endl; 
+        cout << "             Your Recommendation     " << endl; 
+        cout << "------------------------------------------" << endl; 
+
+
         if (rec.found) { 
             cout << "Song: " << rec.song << endl; 
             cout << "Artist: " << rec.artist << endl; 
@@ -38,19 +48,21 @@ void musicRecommendation()
         } 
         else { cout << rec.description << endl; } 
 
-        cout << "----------------------------------------" << endl; 
+        cout << "------------------------------------------" << endl; 
 
-        if (genreChoice != 0) { 
-            cout << "\nEnter 0 to go back to the main menu,"; 
-            cout << " or choose another genre: "; 
+        cout << "\nPress 0 to return to main menu or any other key to get another recommendation: ";
+        cin >> nextChoice;
+        if (nextChoice == 0) {
+            cout << "\nReturning to main menu..." << endl;
+            break;
         } 
-        } while (genreChoice != 0); 
+    }
 }
 
 
 void aboutSpotify() {
     int choice;
-    
+
     cout << "\n========================================" << endl; 
     cout << "            ABOUT SPOTIFY" << endl; 
     cout << "========================================" << endl;
