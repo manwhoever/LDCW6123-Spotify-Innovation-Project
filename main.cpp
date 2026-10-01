@@ -14,7 +14,22 @@ void displayMenu() {
 }
 
 void musicRecommendation() {
-    cout << "Music Recommendation: Check out the latest hits on Spotify!" << endl;
+   std::string genreInput;
+    std::cout << "\nEnter a genre (Pop, Rock, Hip-Hop, Jazz, Classical, Indie/Chill): ";
+    std::cin >> genreInput;
+
+    // Convert the user's string input to Member 2's choice integer (1-6)
+    int choice = genreNameToChoice(genreInput);
+
+    // Get the recommendation struct from Member 2
+    Recommendation rec = getRecommendation(choice);
+
+    // Display the result using your output display module
+    if (rec.found) {
+        displayRecommendationResult(rec, genreInput);
+    } else {
+        std::cout << rec.description << std::endl; // Displays "Invalid choice..."
+    }
 }
 void aboutSpotify() {
     cout << "About Spotify: Spotify is a digital music service that gives you access to millions of songs." << endl;
