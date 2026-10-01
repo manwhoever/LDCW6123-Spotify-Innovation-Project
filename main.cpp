@@ -1,19 +1,27 @@
 #include <iostream>
+#include <cstdlib>   // for exit()
 #include "music_recommender.h" // Connects to the music recommendation functions
 #include "output_display.h" // Connects to the output display functions
 using namespace std;
 
 // Gets an integer from the user and validates that it's within the allowed range
 int getIntegerInput(int min, int max) {
-
     int choice;
 
     while (true) {
         cin >> choice;
 
         if (cin.fail()) {
+            if (cin.eof()) { // Handle end-of-file (Ctrl+D or Ctrl+Z)
+                cout << "\nEnd of input detected. Exiting the program." << endl;
+                exit(0);
+            }
             cin.clear(); // Clear the error state when the user enters a non-numeric value
             cin.ignore(10000, '\n'); // Remove the invalid input from the input buffer
+            cout << "Invalid input. Please enter a number: ";
+        }
+        else if (cin.peek() != '\n') { // Check for extra characters after the number
+            cin.ignore(10000, '\n'); // Remove the extra characters from the input buffer
             cout << "Invalid input. Please enter a number: ";
         }
         else if (choice < min || choice > max) {
