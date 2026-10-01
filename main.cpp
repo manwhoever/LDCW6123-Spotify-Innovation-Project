@@ -2,6 +2,24 @@
 #include "music_recommender.h" //to connect with the recommendation files
 using namespace std;
 
+int getIntegerInput() {
+    int choice;
+
+    while (true) {
+        cin >> choice;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input. Please enter a number: ";
+        }
+        else {
+            cin.ignore(10000, '\n');
+            return choice;
+        }
+    }
+}
+
 void displayMenu() {
     cout << "\n========================================" << endl; 
     cout << " WELCOME TO THE MUSIC RECOMMENDATION PROGRAM" << endl; 
@@ -27,7 +45,7 @@ void musicRecommendation() {
         cout << "0. Back to Main Menu" << endl; 
         cout << "Enter your choice: "; 
 
-        cin >> genreChoice; 
+        genreChoice = getIntegerInput();
 
         if (genreChoice == 0) { 
             cout << "\nReturning to main menu..." << endl; 
@@ -50,12 +68,19 @@ void musicRecommendation() {
 
         cout << "------------------------------------------" << endl; 
 
-        cout << "\nPress 0 to return to main menu or any other key to get another recommendation: ";
-        cin >> nextChoice;
+        cout << "\nPress 0 to return to main menu or 1 to get another recommendation: ";
+
+        nextChoice = getIntegerInput();
+
         if (nextChoice == 0) {
             cout << "\nReturning to main menu..." << endl;
             break;
-        } 
+        } else if (nextChoice == 1) {
+            cout << "\nGetting another recommendation..." << endl;
+        } else {
+            cout << "Invalid input. Returning to main menu..." << endl;
+            break;
+        }
     }
 }
 
@@ -70,11 +95,11 @@ void aboutSpotify() {
     cout << "gives you access to millions of songs." << endl;
 
     cout << "\n Press 0 to return to main menu: ";
-    cin >> choice;
+    choice = getIntegerInput();
 
     while (choice != 0) {
         cout << "Invalid input. Please press 0 to return to main menu: ";
-        cin >> choice;
+        choice = getIntegerInput();
     }
 }
 
@@ -83,7 +108,7 @@ int main() {
     do {
         displayMenu();
         cout << "Enter your choice: ";
-        cin >> choice;
+        choice = getIntegerInput();
 
         switch (choice) {
             case 1:
