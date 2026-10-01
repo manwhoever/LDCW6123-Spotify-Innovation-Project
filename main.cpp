@@ -2,7 +2,7 @@
 #include "music_recommender.h" //to connect with the recommendation files
 using namespace std;
 
-int getIntegerInput() {
+int getIntegerInput(int min, int max) {
     int choice;
 
     while (true) {
@@ -12,6 +12,11 @@ int getIntegerInput() {
             cin.clear();
             cin.ignore(10000, '\n');
             cout << "Invalid input. Please enter a number: ";
+        }
+        else if (choice < min || choice > max) {
+            cin.ignore(10000, '\n');
+            cout << "Invalid choice. Please enter a number from "
+                 << min << " to " << max << ": ";
         }
         else {
             cin.ignore(10000, '\n');
@@ -45,12 +50,12 @@ void musicRecommendation() {
         cout << "0. Back to Main Menu" << endl; 
         cout << "Enter your choice: "; 
 
-        genreChoice = getIntegerInput();
+        genreChoice = getIntegerInput(0, 6);
 
         if (genreChoice == 0) { 
             cout << "\nReturning to main menu..." << endl; 
-            break; 
-        } 
+            return; 
+        }
 
         Recommendation rec = getRecommendation(genreChoice); 
         
@@ -68,18 +73,19 @@ void musicRecommendation() {
 
         cout << "------------------------------------------" << endl; 
 
-        cout << "\nPress 0 to return to main menu or 1 to get another recommendation: ";
+        while (true) {
+            cout << "\nPress 0 to return to main menu or 1 to get another recommendation: ";
 
-        nextChoice = getIntegerInput();
+            nextChoice = getIntegerInput(0, 1);
 
-        if (nextChoice == 0) {
-            cout << "\nReturning to main menu..." << endl;
-            break;
-        } else if (nextChoice == 1) {
-            cout << "\nGetting another recommendation..." << endl;
-        } else {
-            cout << "Invalid input. Returning to main menu..." << endl;
-            break;
+            if (nextChoice == 0) {
+                cout << "\nReturning to main menu..." << endl;
+                return;
+            }
+            else {
+                cout << "\nGetting another recommendation..." << endl;
+                break;
+            }
         }
     }
 }
@@ -94,13 +100,8 @@ void aboutSpotify() {
     cout << "Spotify is a digital music service that " << endl;
     cout << "gives you access to millions of songs." << endl;
 
-    cout << "\n Press 0 to return to main menu: ";
-    choice = getIntegerInput();
-
-    while (choice != 0) {
-        cout << "Invalid input. Please press 0 to return to main menu: ";
-        choice = getIntegerInput();
-    }
+    cout << "\nPress 0 to return to main menu: ";
+    choice = getIntegerInput(0, 0);
 }
 
 int main() {
@@ -108,7 +109,7 @@ int main() {
     do {
         displayMenu();
         cout << "Enter your choice: ";
-        choice = getIntegerInput();
+        choice = getIntegerInput(1, 3);
 
         switch (choice) {
             case 1:
