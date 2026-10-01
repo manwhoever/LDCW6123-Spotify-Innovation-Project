@@ -1,8 +1,9 @@
 #include <iostream>
-#include "music_recommender.h" //to connect with the recommendation files
-#include "output_display.h"
+#include "music_recommender.h" // Connects to the music recommendation functions
+#include "output_display.h" // Connects to the output display functions
 using namespace std;
 
+// Gets an integer from the user and validates that it's within the allowed range
 int getIntegerInput(int min, int max) {
     int choice;
 
@@ -10,22 +11,23 @@ int getIntegerInput(int min, int max) {
         cin >> choice;
 
         if (cin.fail()) {
-            cin.clear();
-            cin.ignore(10000, '\n');
+            cin.clear(); // Clear the error state when the user enters a non-numeric value
+            cin.ignore(10000, '\n'); // Remove the invalid input from the input buffer
             cout << "Invalid input. Please enter a number: ";
         }
         else if (choice < min || choice > max) {
-            cin.ignore(10000, '\n');
+            cin.ignore(10000, '\n'); // Reject numbers outside the range
             cout << "Invalid choice. Please enter a number from "
                  << min << " to " << max << ": ";
         }
         else {
-            cin.ignore(10000, '\n');
+            cin.ignore(10000, '\n'); // Valid input received
             return choice;
         }
     }
 }
 
+// ----------------------------------------- Displays the MAIN MENU options ------------------------------------------
 void displayMenu() {
     cout << "\n========================================" << endl; 
     cout << " WELCOME TO THE MUSIC RECOMMENDATION PROGRAM" << endl; 
@@ -36,6 +38,7 @@ void displayMenu() {
     cout << "3. Exit" << endl;
 }
 
+// Allows the user to choose a genre and receive a music recommendation
 void musicRecommendation() {
     int genreChoice; 
     int nextChoice;
@@ -51,7 +54,7 @@ void musicRecommendation() {
         cout << "0. Back to Main Menu" << endl; 
         cout << "Enter your choice: "; 
 
-        genreChoice = getIntegerInput(0, 6);
+        genreChoice = getIntegerInput(0, 6); // Get and validate the user's genre selection
 
         if (genreChoice == 0) { 
             cout << "\nReturning to main menu..." << endl; 
@@ -77,7 +80,7 @@ void musicRecommendation() {
         while (true) {
             cout << "\nPress 0 to return to main menu or 1 to get another recommendation: ";
 
-            nextChoice = getIntegerInput(0, 1);
+            nextChoice = getIntegerInput(0, 1); // Validate whether the user wants another recommendation
 
             if (nextChoice == 0) {
                 cout << "\nReturning to main menu..." << endl;
@@ -92,7 +95,7 @@ void musicRecommendation() {
     }
 }
 
-
+//----------------------------------------- Displays basic information about Spotify -----------------------------------------
 void aboutSpotify() {
     int choice;
 
@@ -106,22 +109,23 @@ void aboutSpotify() {
     choice = getIntegerInput(0, 0);
 }
 
+// Main function that controls the program menu
 int main() {
-    int choice;
+    int choice; 
     do {
         displayMenu();
         cout << "Enter your choice: ";
-        choice = getIntegerInput(1, 3);
+        choice = getIntegerInput(1, 3); // Get and validate the user's main menu choice
 
         switch (choice) {
             case 1:
-                musicRecommendation();
+                musicRecommendation(); // Open the music recommendation feature
                 break;
             case 2:
-                aboutSpotify();
+                aboutSpotify(); // Display information about Spotify
                 break;
             case 3:
-                cout << "Exiting the program." << endl;
+                cout << "Exiting the program." << endl; // End the program
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
