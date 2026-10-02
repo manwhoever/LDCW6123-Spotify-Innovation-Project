@@ -18,11 +18,13 @@ int getIntegerInput(int min, int max) {
             }
             cin.clear(); // Clear the error state when the user enters a non-numeric value
             cin.ignore(10000, '\n'); // Remove the invalid input from the input buffer
-            cout << "Invalid input. Please enter a number: ";
+            cout << "Invalid character. Please enter a number from "
+                 << min << " to " << max << ": ";
         }
         else if (cin.peek() != '\n') { // Check for extra characters after the number
             cin.ignore(10000, '\n'); // Remove the extra characters from the input buffer
-            cout << "Invalid input. Please enter a number: "<< min << " to " << max << ": ";
+            cout << "Invalid input. Please enter a number from "
+                 << min << " to " << max << ": ";
         }
         else if (choice < min || choice > max) {
             cin.ignore(10000, '\n'); // Reject numbers outside the range
