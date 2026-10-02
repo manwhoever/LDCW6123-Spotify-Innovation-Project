@@ -22,7 +22,7 @@ int getIntegerInput(int min, int max) {
         }
         else if (cin.peek() != '\n') { // Check for extra characters after the number
             cin.ignore(10000, '\n'); // Remove the extra characters from the input buffer
-            cout << "Invalid input. Please enter a number: ";
+            cout << "Invalid input. Please enter a number: "<< min << " to " << max << ": ";
         }
         else if (choice < min || choice > max) {
             cin.ignore(10000, '\n'); // Reject numbers outside the range
